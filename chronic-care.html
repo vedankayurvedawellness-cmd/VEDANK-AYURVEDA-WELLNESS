@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chronic Disease Care with Panchkarma | Vedank Ayurveda Wellness</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--forest:#0f5c5c;--green:#157a7a;--gold:#e0954a;--cream:#f7f4ea;--border:#e2d5c3;--muted:#6b7280;--text:#1a1a1a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);line-height:1.7;}
+a{color:inherit;}
+
+/* ---------- Nav (matches site) ---------- */
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none;}
+.nav-links a{text-decoration:none;color:var(--text);font-size:.78rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:8px 14px;border-radius:8px;transition:all .25s;position:relative;}
+.nav-links a:hover,.nav-links a.active{color:var(--green);background:rgba(26,74,46,.07);}
+.nav-links a.active::after{content:'';position:absolute;bottom:4px;left:50%;transform:translateX(-50%);width:18px;height:2px;background:var(--gold);border-radius:2px;}
+nav{display:flex;align-items:center;justify-content:space-between;padding:14px 60px;background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;}
+.nav-left{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-brand .name{display:block;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.15rem;color:var(--forest);}
+.nav-brand .tagline{display:block;font-size:.62rem;color:var(--muted);letter-spacing:.3px;}
+.nav-right{display:flex;align-items:center;gap:16px;}
+.btn-nav-cta{background:var(--forest);color:#fff;text-decoration:none;font-size:.75rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:10px 20px;border-radius:30px;}
+@media(max-width:960px){nav{padding:12px 20px;}.nav-links{display:none;}}
+
+/* ---------- Hero ---------- */
+.hero{background:linear-gradient(135deg,var(--forest),#1a5c35);color:#fff;padding:70px 20px 56px;text-align:center;position:relative;overflow:hidden;}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(201,145,43,.25),transparent 55%);}
+.hero-inner{position:relative;max-width:820px;margin:0 auto;}
+.hero .eyebrow{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);padding:6px 16px;border-radius:30px;font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:18px;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,5vw,48px);font-weight:700;line-height:1.15;margin-bottom:16px;}
+.hero h1 span{color:#e8c06a;}
+.hero p{opacity:.88;font-size:1rem;max-width:620px;margin:0 auto 26px;}
+.hero-stats{display:flex;justify-content:center;gap:36px;flex-wrap:wrap;margin-top:8px;}
+.hero-stats div{text-align:center;}
+.hero-stats .num{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:700;color:#e8c06a;}
+.hero-stats .lbl{font-size:.68rem;opacity:.8;text-transform:uppercase;letter-spacing:.5px;}
+
+/* ---------- Flagship liver banner ---------- */
+.flagship{max-width:1100px;margin:-34px auto 10px;background:#fff;border:1px solid var(--border);border-radius:18px;padding:22px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;box-shadow:0 12px 34px rgba(14,61,35,.1);position:relative;z-index:2;flex-wrap:wrap;}
+.flagship-left{display:flex;align-items:center;gap:16px;}
+.flagship-icon{font-size:2.2rem;}
+.flagship h3{font-family:'Cormorant Garamond',serif;color:var(--forest);font-size:1.2rem;}
+.flagship p{font-size:.85rem;color:var(--muted);margin-top:2px;}
+.flagship a{background:var(--green);color:#fff;text-decoration:none;font-size:.78rem;font-weight:700;padding:11px 22px;border-radius:30px;white-space:nowrap;}
+
+/* ---------- Search + filter ---------- */
+.controls{max-width:1100px;margin:38px auto 8px;padding:0 20px;}
+.search-box{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:12px 18px;max-width:520px;margin:0 auto 22px;}
+.search-box input{border:none;outline:none;flex:1;font-family:inherit;font-size:.9rem;background:transparent;}
+.search-box svg{flex-shrink:0;}
+.category-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+.pill{border:1.5px solid var(--border);background:#fff;padding:9px 18px;border-radius:30px;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:7px;color:var(--text);}
+.pill:hover{border-color:var(--green);}
+.pill.active{background:var(--forest);color:#fff;border-color:var(--forest);}
+
+/* ---------- Category sections ---------- */
+.categories{max-width:1100px;margin:36px auto;padding:0 20px;}
+.cat-section{margin-bottom:44px;}
+.cat-header{display:flex;align-items:center;gap:14px;margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid var(--border);}
+.cat-header .icon{font-size:1.7rem;width:52px;height:52px;background:var(--cream);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.cat-header h2{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--forest);font-weight:700;}
+.cat-header p{font-size:.82rem;color:var(--muted);margin-top:2px;}
+.disease-grid{display:grid;gap:14px;}
+
+.disease-card{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:box-shadow .25s;}
+.disease-card:hover{box-shadow:0 8px 24px rgba(14,61,35,.08);}
+.disease-toggle{width:100%;background:none;border:none;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;text-align:left;font-family:inherit;}
+.disease-toggle .left{display:flex;align-items:center;gap:14px;}
+.disease-toggle .emoji{font-size:1.4rem;}
+.disease-toggle h3{font-size:1.02rem;font-weight:700;color:var(--text);}
+.disease-toggle .sub{font-size:.78rem;color:var(--muted);margin-top:2px;}
+.chev{font-size:1.1rem;color:var(--green);transition:transform .25s;flex-shrink:0;}
+.disease-card.open .chev{transform:rotate(180deg);}
+.disease-body{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.disease-card.open .disease-body{max-height:900px;}
+.disease-body-inner{padding:0 22px 24px;display:grid;gap:16px;grid-template-columns:1fr;}
+@media(min-width:760px){.disease-body-inner{grid-template-columns:1fr 1fr;}}
+.db-block h4{font-size:.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--gold);font-weight:700;margin-bottom:8px;}
+.db-block p{font-size:.86rem;color:#374151;}
+.db-block ul{padding-left:18px;}
+.db-block ul li{font-size:.86rem;color:#374151;margin-bottom:5px;}
+.note{grid-column:1/-1;background:var(--cream);border-left:3px solid var(--gold);padding:10px 14px;border-radius:0 8px 8px 0;font-size:.78rem;color:#5b4a30;}
+
+/* ---------- CTA ---------- */
+.cta-strip{max-width:1100px;margin:50px auto;padding:36px 30px;background:linear-gradient(135deg,var(--forest),#1a5c35);border-radius:20px;color:#fff;text-align:center;}
+.cta-strip h2{font-family:'Cormorant Garamond',serif;font-size:1.7rem;margin-bottom:10px;}
+.cta-strip p{opacity:.85;font-size:.9rem;margin-bottom:20px;}
+.cta-strip a{background:#e8c06a;color:var(--forest);text-decoration:none;font-weight:700;font-size:.85rem;padding:13px 30px;border-radius:30px;display:inline-block;}
+
+.no-results{text-align:center;padding:40px 20px;color:var(--muted);display:none;}
+
+footer{background:var(--forest);color:rgba(255,255,255,.7);text-align:center;padding:34px 20px;font-size:.82rem;}
+footer a{color:#e8c06a;text-decoration:none;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-left">
+    <div class="nav-brand"><span class="name">Vedank Ayurveda</span><span class="tagline">Where Ancient Wisdom Meets Modern Healing</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="liver.html">Liver Care</a></li>
+    <li><a href="chronic-care.html" class="active">Chronic Care</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="doctors.html">Doctors</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="contact.html" class="btn-nav-cta">Book Consultation</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">🌿 Complete Ayurvedic Chronic Care</div>
+    <h1>Panchkarma-Led Care for <span>Every Major Chronic Ailment</span></h1>
+    <p>Beyond our core strength in liver health, our doctors design classical Panchkarma and herbal protocols for joint, neurological, metabolic, digestive, skin, and respiratory conditions — always as a considered complement to your existing medical care.</p>
+    <div class="hero-stats">
+      <div><div class="num">30+</div><div class="lbl">Conditions Treated</div></div>
+      <div><div class="num">8</div><div class="lbl">Care Categories</div></div>
+      <div><div class="num">NABH</div><div class="lbl">Accredited</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="flagship">
+  <div class="flagship-left">
+    <div class="flagship-icon">🫁</div>
+    <div>
+      <h3>Liver Care remains our deepest specialty</h3>
+      <p>Fatty liver, hepatitis, cirrhosis support &amp; SGPT/SGOT normalisation</p>
+    </div>
+  </div>
+  <a href="liver.html">View Liver Care Program →</a>
+</div>
+
+<div class="controls">
+  <div class="search-box">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input id="searchInput" type="text" placeholder="Search a condition — e.g. migraine, PCOS, asthma...">
+  </div>
+  <div class="category-pills" id="categoryPills"></div>
+</div>
+
+<div class="categories" id="categoriesWrap"></div>
+<p class="no-results" id="noResults">No conditions match your search. Try a different term or browse by category above.</p>
+
+<div class="cta-strip">
+  <h2>Not sure which category fits your condition?</h2>
+  <p>Speak with our Ayurvedic physician for a personalised assessment and Panchkarma plan — free initial consultation.</p>
+  <a href="contact.html">💬 Book Your Free Consultation</a>
+</div>
+
+<footer>
+  <p>© 2026 Vedank Ayurveda Wellness · Greater Noida · NABH Accredited</p>
+  <p style="margin-top:6px">
+    <a href="privacy-policy.html">Privacy Policy</a> &nbsp;·&nbsp;
+    <a href="terms.html">Terms &amp; Conditions</a> &nbsp;·&nbsp;
+    <a href="disclaimer.html">Medical Disclaimer</a>
+  </p>
+  <p style="margin-top:10px;opacity:.6;max-width:640px;margin-left:auto;margin-right:auto;">Ayurvedic care is complementary and supportive in nature. It does not replace diagnosis or treatment from a qualified physician — please continue any prescribed medical treatment alongside these therapies.</p>
+</footer>
+
+<script>
+const DATA = [
+  {
+    cat: "Musculoskeletal & Joint",
+    icon: "🦴",
+    desc: "Degenerative and inflammatory conditions of the joints and spine",
+    diseases: [
+      {
+        name: "Osteoarthritis",
+        emoji: "🦵",
+        sub: "Wear and tear of joint cartilage",
+        overview: "A degenerative joint condition where cartilage cushioning wears down over time, most often in knees, hips and hands, causing pain, stiffness and reduced mobility — considered a Vata-dominant disorder (Sandhivata) in Ayurveda.",
+        panchkarma: ["Abhyanga (warm medicated oil massage) to lubricate joints","Janu Basti / Greeva Basti — localised oil pooling over the affected joint","Patra Pinda Sweda (herbal leaf bolus fomentation)","Basti (medicated enema) for deep Vata pacification"],
+        support: "Warming anti-inflammatory herbs and joint-nourishing formulations are typically used alongside; therapy plans are built around joint mobility goals.",
+        note: "Best combined with your physiotherapy or orthopaedic advice, especially in advanced joint damage."
+      },
+      {
+        name: "Rheumatoid Arthritis",
+        emoji: "✋",
+        sub: "Autoimmune joint inflammation",
+        overview: "An autoimmune condition causing symmetrical joint inflammation, swelling and morning stiffness. Ayurveda approaches it as Amavata — accumulated metabolic toxins (Ama) combining with aggravated Vata.",
+        panchkarma: ["Virechana (therapeutic purgation) to clear Ama from the system","Basti with anti-inflammatory decoctions","Local Lepa (herbal paste application) on swollen joints","Swedana (sudation therapy) once acute inflammation settles"],
+        support: "Diet modification to reduce Ama formation is emphasised alongside herbal anti-inflammatory support.",
+        note: "During active flares with high inflammatory markers, therapies are modified — always continue your rheumatologist's medication plan."
+      },
+      {
+        name: "Sciatica",
+        emoji: "⚡",
+        sub: "Nerve pain radiating along the lower back and legs",
+        overview: "Compression or irritation of the sciatic nerve causing shooting pain from the lower back down the leg, classified under Gridhrasi in classical texts — a Vata disorder of the nerve pathway.",
+        panchkarma: ["Kati Basti (localised lower-back oil pooling)","Abhyanga with Vata-pacifying oils","Basti (enema therapy) — considered a primary treatment for nerve-related Vata disorders","Patra Pinda Sweda along the nerve path"],
+        support: "Herbal formulations aimed at nerve nourishment and pain reduction are used through the course.",
+        note: "Persistent numbness or weakness warrants an MRI and neurology opinion before starting therapy."
+      },
+      {
+        name: "Cervical & Lumbar Spondylosis",
+        emoji: "🧍",
+        sub: "Degenerative disc diseases of the neck and spine",
+        overview: "Age-related degeneration of spinal discs and vertebrae in the neck (cervical) or lower back (lumbar), leading to stiffness, pain and sometimes nerve compression.",
+        panchkarma: ["Greeva Basti / Kati Basti depending on region affected","Abhyanga and gentle Swedana","Nasya (nasal therapy) for cervical spondylosis with associated headaches","Basti for chronic lumbar cases"],
+        support: "Posture correction guidance is given alongside oil therapies to support long-term spine health.",
+        note: "Any radiating weakness or bladder/bowel symptoms need immediate medical evaluation."
+      },
+      {
+        name: "Gouty Arthritis",
+        emoji: "🔥",
+        sub: "Joint inflammation caused by uric acid buildup",
+        overview: "Sudden, intensely painful joint inflammation — often the big toe — caused by uric acid crystal deposits, linked to Pitta-Kapha imbalance in Ayurveda.",
+        panchkarma: ["Virechana to help clear excess Pitta and metabolic waste","Local Lepa with cooling anti-inflammatory herbs on the joint","Basti during the non-acute phase"],
+        support: "Dietary counselling to reduce purine-rich foods is a core part of management alongside herbal support.",
+        note: "Acute gout attacks are managed conservatively first; therapy intensity is increased once acute pain settles."
+      }
+    ]
+  },
+  {
+    cat: "Neurological",
+    icon: "🧠",
+    desc: "Disorders of the nervous system and movement",
+    diseases: [
+      {
+        name: "Paralysis (Hemiplegia)",
+        emoji: "🧠",
+        sub: "Loss of muscle function, often following a stroke",
+        overview: "One-sided weakness or paralysis, most commonly post-stroke, addressed in Ayurveda as Pakshaghata — a severe Vata disorder affecting the nerve-muscle pathway.",
+        panchkarma: ["Abhyanga with Vata-pacifying and nerve-nourishing oils","Basti — considered central to Pakshaghata management","Nasya for associated facial and speech involvement","Swedana to improve circulation to affected limbs"],
+        support: "Rehabilitation-focused herbal formulations are combined with physiotherapy recommendations.",
+        note: "This is adjunct, rehabilitative care alongside your neurologist and physiotherapist — never a substitute for acute stroke treatment."
+      },
+      {
+        name: "Bell's Palsy",
+        emoji: "😐",
+        sub: "Sudden weakness or paralysis of facial muscles",
+        overview: "Sudden onset one-sided facial muscle weakness, typically linked to nerve inflammation. Ayurveda approaches it as a localised Vata disorder of the face (Ardita).",
+        panchkarma: ["Nasya (medicated nasal drops) — a primary therapy for facial nerve conditions","Mukha Abhyanga (facial oil massage)","Local Swedana over the face","Basti to address underlying Vata imbalance"],
+        support: "Early intervention (within the first few weeks) tends to show the best supportive response.",
+        note: "Rule out other causes with your physician first; steroids started early by a doctor remain standard care."
+      },
+      {
+        name: "Migraine",
+        emoji: "🤕",
+        sub: "Severe, recurring headache disorders",
+        overview: "Recurring, often one-sided, throbbing headaches sometimes with visual aura, nausea and light sensitivity — linked to Pitta aggravation with Vata involvement in Ayurveda (Ardhavabhedaka).",
+        panchkarma: ["Nasya — considered a key therapy for head and sinus-related disorders","Shirodhara (continuous warm oil stream on the forehead) for calming the nervous system","Shiro Abhyanga (head massage) with cooling oils","Virechana in Pitta-dominant, recurrent cases"],
+        support: "Trigger-identification (diet, sleep, stress) is worked through alongside therapy.",
+        note: "Sudden severe 'worst-of-life' headaches need emergency evaluation, not Ayurvedic therapy first."
+      },
+      {
+        name: "Parkinson's Disease",
+        emoji: "🌀",
+        sub: "Progressive central nervous system disorder affecting movement",
+        overview: "A progressive condition affecting movement, tremor and coordination due to dopamine-producing neuron loss, viewed as a deep-seated Vata disorder (Kampavata).",
+        panchkarma: ["Abhyanga with heavy, nourishing Vata-pacifying oils","Basti as a long-term supportive therapy","Shirodhara for associated anxiety and sleep disturbance","Swedana for stiffness"],
+        support: "Ongoing supportive care aims to ease stiffness and improve quality of life alongside neurology medication.",
+        note: "This is supportive symptom management only — continue neurologist-prescribed medication without interruption."
+      }
+    ]
+  },
+  {
+    cat: "Skin & Dermatological",
+    icon: "🌿",
+    desc: "Chronic and autoimmune skin conditions",
+    diseases: [
+      {
+        name: "Psoriasis",
+        emoji: "🔴",
+        sub: "Autoimmune condition causing scaly, red skin patches",
+        overview: "A chronic autoimmune condition causing rapid skin cell turnover, leading to thick, scaly, red plaques. Ayurveda classifies it under Kushtha — disorders rooted in vitiated blood and Pitta-Kapha.",
+        panchkarma: ["Virechana — considered the primary purification therapy for Pitta-driven skin disorders","Raktamokshana (therapeutic bloodletting) in select chronic cases","Lepa (medicated paste) application on plaques","Takradhara (buttermilk stream therapy) for cooling and soothing"],
+        support: "Diet and lifestyle changes to reduce Pitta aggravation run alongside internal herbal medicines.",
+        note: "Flare management with your dermatologist should continue; Panchkarma here works as a long-term supportive layer."
+      },
+      {
+        name: "Eczema (Atopic Dermatitis)",
+        emoji: "🧴",
+        sub: "Chronic itchy, inflamed skin patches",
+        overview: "A chronic inflammatory skin condition causing dry, itchy, inflamed patches, often linked to allergic tendencies — approached as a Pitta-Kapha skin disorder with Vata-driven dryness.",
+        panchkarma: ["Virechana for internal cleansing in chronic, recurrent cases","Lepa with cooling, anti-inflammatory herbal pastes","Abhyanga with medicated oils to restore skin barrier moisture","Takradhara for widespread itching"],
+        support: "Trigger and allergen identification is discussed as part of the long-term plan.",
+        note: "Avoid harsh therapies during active weeping or infected eczema — infection needs medical treatment first."
+      },
+      {
+        name: "Chronic Urticaria",
+        emoji: "🫧",
+        sub: "Persistent, recurring allergic hives",
+        overview: "Recurrent, itchy hives lasting more than six weeks without an identifiable trigger in many cases, linked to Pitta imbalance with an allergic (Vata-Kapha) component.",
+        panchkarma: ["Virechana to address underlying Pitta aggravation","Herbal Lepa for symptomatic relief during flares","Basti in cases with a strong Vata component"],
+        support: "A structured elimination approach to potential dietary triggers is often recommended.",
+        note: "Any swelling of lips, throat or difficulty breathing is an emergency — seek immediate medical care."
+      },
+      {
+        name: "Acne Vulgaris",
+        emoji: "😔",
+        sub: "Severe or chronic acne conditions",
+        overview: "Chronic inflammatory condition of hair follicles and oil glands causing persistent breakouts, linked in Ayurveda to combined Pitta-Kapha vitiation of the blood tissue.",
+        panchkarma: ["Virechana for underlying Pitta-blood purification in stubborn cases","Mukha Lepa (facial herbal paste) for active lesions","Takradhara for associated stress-linked flares"],
+        support: "Diet counselling around oily, spicy and processed foods supports the internal treatment.",
+        note: "Cystic or scarring acne benefits from a combined dermatology + Ayurveda approach."
+      }
+    ]
+  },
+  {
+    cat: "Metabolic & Lifestyle",
+    icon: "⚖️",
+    desc: "Weight, sugar, cholesterol and blood pressure disorders",
+    diseases: [
+      {
+        name: "Obesity",
+        emoji: "⚖️",
+        sub: "Excessive body fat accumulation",
+        overview: "Excess Kapha and impaired metabolic fire (Agni) leading to fat accumulation, sluggishness and downstream risk for diabetes, joint and heart problems.",
+        panchkarma: ["Udvartana (herbal powder massage) to stimulate fat metabolism","Virechana to reset digestive fire","Swedana to support circulation and metabolism","Basti in cases with associated constipation"],
+        support: "A structured diet and activity plan is built to work alongside the metabolism-stimulating therapies.",
+        note: "Sustainable results depend on consistency with diet and movement, not therapy alone."
+      },
+      {
+        name: "Type 2 Diabetes Mellitus",
+        emoji: "🩸",
+        sub: "Chronic metabolic condition affecting blood sugar regulation",
+        overview: "A chronic condition of impaired blood sugar regulation, classified under Prameha in Ayurveda and linked to Kapha-dominant metabolic imbalance.",
+        panchkarma: ["Udvartana to improve insulin sensitivity and reduce Kapha","Virechana for metabolic reset in appropriately screened patients","Basti for associated neuropathy or constipation"],
+        support: "Blood-sugar-supportive herbs are used as a complement, never a replacement, for prescribed medication.",
+        note: "Blood sugar must continue to be monitored by your physician; medication should never be stopped without medical advice."
+      },
+      {
+        name: "Dyslipidemia",
+        emoji: "🫀",
+        sub: "High cholesterol and lipid imbalances",
+        overview: "Elevated cholesterol and triglyceride levels linked to impaired fat metabolism (Kapha-Meda dhatu imbalance), raising cardiovascular risk over time.",
+        panchkarma: ["Udvartana for fat-metabolism stimulation","Virechana in select cases for deeper metabolic correction","Basti for associated digestive sluggishness"],
+        support: "Dietary fat-quality guidance is central to the plan alongside lipid-supportive herbs.",
+        note: "Continue statins or other prescribed lipid medication; recheck lipid profile periodically with your physician."
+      },
+      {
+        name: "Hypertension",
+        emoji: "💓",
+        sub: "Chronic high blood pressure",
+        overview: "Persistently elevated blood pressure, often linked to Vata-Pitta aggravation and stress, that raises long-term cardiovascular and kidney risk.",
+        panchkarma: ["Shirodhara for calming the nervous system and stress-linked blood pressure elevation","Padabhyanga (foot massage) for grounding excess Vata","Gentle Abhyanga (avoiding vigorous stimulation)"],
+        support: "Stress management and sodium-conscious dietary guidance are built into the plan.",
+        note: "Vigorous Panchkarma procedures are avoided in uncontrolled hypertension — blood pressure monitoring continues throughout, and antihypertensive medication must not be stopped."
+      }
+    ]
+  },
+  {
+    cat: "Gastrointestinal & Digestive",
+    icon: "🍃",
+    desc: "Chronic disorders of the digestive tract",
+    diseases: [
+      {
+        name: "Irritable Bowel Syndrome (IBS)",
+        emoji: "🌀",
+        sub: "Chronic disorder affecting the large intestine",
+        overview: "A functional gut disorder causing bloating, altered bowel habits and abdominal discomfort, linked to weakened digestive fire and Vata imbalance in the colon.",
+        panchkarma: ["Basti — considered the primary therapy for colon-related Vata disorders","Abhyanga with warm oil over the abdomen","Swedana for digestive comfort"],
+        support: "Trigger-food identification and a structured eating routine support the internal medicines.",
+        note: "Persistent weight loss, blood in stool, or night symptoms need investigation to rule out other conditions first."
+      },
+      {
+        name: "Chronic Constipation",
+        emoji: "🐌",
+        sub: "Persistent difficulty with bowel movements",
+        overview: "Long-standing difficulty passing stool, most often a Vata-dominant digestive disorder from irregular routine, low fluid intake or weak Agni.",
+        panchkarma: ["Basti (enema therapy) — the classical primary treatment for constipation","Abhyanga with warm oil over the abdomen","Virechana for deeper-rooted, longstanding cases"],
+        support: "Fibre, hydration and routine-building guidance is given alongside internal formulations.",
+        note: "New-onset constipation in older adults, or with weight loss, should be medically evaluated first."
+      },
+      {
+        name: "Hyperacidity & GERD",
+        emoji: "🔥",
+        sub: "Chronic acid reflux and stomach lining irritation",
+        overview: "Chronic acid reflux causing heartburn and stomach lining irritation, linked to aggravated Pitta and impaired digestive fire.",
+        panchkarma: ["Virechana to pacify excess Pitta in recurrent cases","Cooling internal herbal formulations","Dietary Pitta-pacifying guidance (avoiding spicy, fried, late meals)"],
+        support: "Meal-timing and food-combination counselling forms a large part of long-term management.",
+        note: "Persistent reflux, difficulty swallowing, or weight loss should be evaluated endoscopically first."
+      },
+      {
+        name: "Ulcerative Colitis",
+        emoji: "🩹",
+        sub: "Inflammatory bowel disease causing sores in the digestive tract",
+        overview: "A chronic inflammatory bowel disease causing ulceration of the colon lining, approached as a Pitta-dominant condition with Raktadhatu (blood tissue) involvement.",
+        panchkarma: ["Basti with anti-inflammatory, healing decoctions — a cornerstone therapy for colon healing","Virechana in the non-acute phase for select patients","Cooling Pitta-pacifying diet protocol"],
+        support: "Close coordination with your gastroenterologist is maintained given the relapsing nature of this condition.",
+        note: "Active flares with bleeding require medical management first; Panchkarma is introduced in remission or mild phases under supervision."
+      }
+    ]
+  },
+  {
+    cat: "Respiratory",
+    icon: "🌬️",
+    desc: "Chronic airway and sinus conditions",
+    diseases: [
+      {
+        name: "Bronchial Asthma",
+        emoji: "🌬️",
+        sub: "Chronic inflammation of the lung airways",
+        overview: "A chronic inflammatory airway condition causing wheezing, breathlessness and cough, classified as Tamaka Shwasa — a Kapha-Vata disorder of the respiratory channels.",
+        panchkarma: ["Vamana (therapeutic emesis) — the classical primary therapy for Kapha-dominant respiratory conditions","Nasya for associated nasal and sinus congestion","Swedana over the chest to loosen congestion"],
+        support: "Breathing exercises (Pranayama) are typically incorporated as a daily supportive practice.",
+        note: "This is supportive, inter-attack management only — rescue inhalers and prescribed asthma medication must always be continued and available."
+      },
+      {
+        name: "Chronic Sinusitis",
+        emoji: "👃",
+        sub: "Long-term inflammation of the nasal sinuses",
+        overview: "Persistent inflammation of the sinus lining causing congestion, facial pressure and headache, linked to Kapha accumulation in the head region.",
+        panchkarma: ["Nasya — considered the definitive classical therapy for sinus and head disorders","Swedana to the face for congestion relief","Steam inhalation with medicated herbs"],
+        support: "Environmental and dietary Kapha-reduction guidance supports long-term control.",
+        note: "Persistent one-sided symptoms or facial swelling need ENT evaluation to rule out other causes."
+      },
+      {
+        name: "Allergic Rhinitis",
+        emoji: "🤧",
+        sub: "Persistent seasonal or environmental allergies",
+        overview: "Recurrent sneezing, nasal congestion and itching triggered by allergens, viewed as a Kapha-Vata imbalance with heightened sensitivity of the nasal channels.",
+        panchkarma: ["Nasya with anti-allergic medicated oils/powders","Steam inhalation for symptomatic relief","Diet and environment modification to reduce Kapha triggers"],
+        support: "Seasonal pre-emptive Nasya courses are often suggested before known allergy seasons.",
+        note: "Persistent or worsening symptoms should be discussed with an ENT or allergist for testing."
+      }
+    ]
+  },
+  {
+    cat: "Women's Health",
+    icon: "🌸",
+    desc: "Hormonal and reproductive health conditions",
+    diseases: [
+      {
+        name: "PCOS (Polycystic Ovary Syndrome)",
+        emoji: "🌸",
+        sub: "Hormonal imbalance affecting ovulation and metabolism",
+        overview: "A common hormonal disorder causing irregular cycles, weight gain and metabolic disturbance, linked to combined Kapha-Vata imbalance affecting the reproductive tissues (Artava dhatu).",
+        panchkarma: ["Udvartana to support metabolism and weight management","Virechana for deeper hormonal-metabolic reset","Basti to support reproductive channel health and regular cycles"],
+        support: "Cycle tracking and a structured diet-exercise plan are built alongside hormone-supportive herbs.",
+        note: "Fertility-focused cases are coordinated with a gynaecologist; blood sugar and thyroid should also be screened."
+      }
+    ]
+  },
+  {
+    cat: "Mental Wellness",
+    icon: "🧘",
+    desc: "Stress, anxiety and sleep-related conditions",
+    diseases: [
+      {
+        name: "Stress & Insomnia",
+        emoji: "🌙",
+        sub: "Chronic stress and difficulty falling or staying asleep",
+        overview: "Persistent stress and disrupted sleep patterns, linked to aggravated Vata affecting the nervous system and mind (Manas), often compounding other chronic conditions.",
+        panchkarma: ["Shirodhara — a signature calming therapy using a continuous warm oil stream on the forehead","Abhyanga (full-body oil massage) for deep relaxation","Padabhyanga (foot massage) before bedtime for grounding","Nasya for mental clarity and calm"],
+        support: "Sleep hygiene counselling and a calming daily routine (Dinacharya) are recommended alongside therapy.",
+        note: "Persistent low mood, anxiety, or thoughts of self-harm need prompt attention from a mental health professional — please reach out for that support directly."
+      }
+    ]
+  }
+];
+
+const wrap = document.getElementById('categoriesWrap');
+const pillsWrap = document.getElementById('categoryPills');
+const searchInput = document.getElementById('searchInput');
+const noResults = document.getElementById('noResults');
+let activeCat = 'all';
+
+function slug(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-');}
+
+function renderPills(){
+  let html = `<button class="pill active" data-cat="all">🔎 All Conditions</button>`;
+  DATA.forEach(c=>{
+    html += `<button class="pill" data-cat="${slug(c.cat)}">${c.icon} ${c.cat}</button>`;
+  });
+  pillsWrap.innerHTML = html;
+  pillsWrap.querySelectorAll('.pill').forEach(p=>{
+    p.addEventListener('click', ()=>{
+      activeCat = p.dataset.cat;
+      pillsWrap.querySelectorAll('.pill').forEach(x=>x.classList.remove('active'));
+      p.classList.add('active');
+      render();
+    });
+  });
+}
+
+function render(){
+  const q = searchInput.value.trim().toLowerCase();
+  let anyVisible = false;
+  let html = '';
+  DATA.forEach(cat=>{
+    const catSlug = slug(cat.cat);
+    if(activeCat !== 'all' && activeCat !== catSlug) return;
+    const filteredDiseases = cat.diseases.filter(d=>{
+      if(!q) return true;
+      return d.name.toLowerCase().includes(q) || d.sub.toLowerCase().includes(q) || cat.cat.toLowerCase().includes(q);
+    });
+    if(filteredDiseases.length === 0) return;
+    anyVisible = true;
+    html += `<div class="cat-section">
+      <div class="cat-header">
+        <div class="icon">${cat.icon}</div>
+        <div><h2>${cat.cat}</h2><p>${cat.desc}</p></div>
+      </div>
+      <div class="disease-grid">`;
+    filteredDiseases.forEach((d,i)=>{
+      html += `<div class="disease-card">
+        <button class="disease-toggle">
+          <div class="left">
+            <div class="emoji">${d.emoji}</div>
+            <div><h3>${d.name}</h3><div class="sub">${d.sub}</div></div>
+          </div>
+          <div class="chev">▾</div>
+        </button>
+        <div class="disease-body">
+          <div class="disease-body-inner">
+            <div class="db-block" style="grid-column:1/-1">
+              <h4>Overview</h4>
+              <p>${d.overview}</p>
+            </div>
+            <div class="db-block">
+              <h4>Panchkarma Approach</h4>
+              <ul>${d.panchkarma.map(t=>`<li>${t}</li>`).join('')}</ul>
+            </div>
+            <div class="db-block">
+              <h4>Herbal &amp; Lifestyle Support</h4>
+              <p>${d.support}</p>
+            </div>
+            <div class="note">⚠️ ${d.note}</div>
+          </div>
+        </div>
+      </div>`;
+    });
+    html += `</div></div>`;
+  });
+  wrap.innerHTML = html;
+  noResults.style.display = anyVisible ? 'none' : 'block';
+
+  wrap.querySelectorAll('.disease-toggle').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      btn.closest('.disease-card').classList.toggle('open');
+    });
+  });
+}
+
+searchInput.addEventListener('input', render);
+renderPills();
+render();
+</script>
+</body>
+</html>
